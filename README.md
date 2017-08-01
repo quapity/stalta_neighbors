@@ -13,7 +13,8 @@ LDK: A seismic array detection algorithm
 |
 <b><a href="#license">License</a></b>
 </p>
-![ScreenShot](./STALTA_neighbors-03.png?raw=true "Basic Picks")
+
+![ScreenShot](https://github.com/quapity/stalta_neighbors/raw/master/STALTA_neighbors-03.png)
 
 
 Overview
