@@ -13,23 +13,13 @@ LDK: A seismic array detection algorithm
 |
 <b><a href="#license">License</a></b>
 </p>
-![ScreenShot](./SSoverview.png?raw=true "Array Image")
+![ScreenShot](./STALTA_neighbors-03.png?raw=true "Basic Picks")
 
 
 Overview
 -----
 
-Seismic detection code for processing seismic data from arrays with a large number of stations
-(the advantage over STA/LTA increases with the number of stations). This code was built for processing
-Transportable Array data, and has been tested on dense temporary arrays, where in both cases station
-spacing is somewhat consistent. This is not an appropriate method for T or L-shaped arrays with few 
-stations because it is fundamentally a spatial coherence filter implemented in the frequency domain.
-
-The main advantage over other network style processing is that 1) No earth model is required,
-2) The number of false detections when tuned for detection of small magnitude events (M<2.5)
-still leaves the user with a tractable number of detections to manually review, 3) Performs better 
-in high-noise environments and 4) There is no requirement that sources are earthquake like 
-(i.e. that they are impulsive, high amplitude relative to minute-length background, etc..)  
+Amplitude picker where coherence matters only from neighbors in the node graph.  
 
 
 Set-Up
