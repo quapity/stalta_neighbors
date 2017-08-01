@@ -1,4 +1,4 @@
-LDK: A seismic array detection algorithm
+Amplitude picker, where coherence matters only from neighbors in the node graph
 ===============================================
 </p>
 
@@ -18,30 +18,16 @@ LDK: A seismic array detection algorithm
 Overview
 -----
 
-Amplitude picker where coherence matters only from neighbors in the node graph.  
+Pick spikes from a time-series, but make sure a temporally coincident amplitude excursion is seen on X number of nearby sensors, otherwise... consider it noise. This lets us associate temporally coincident picks on individual sensors into triggers without an explicit path model, with the hope of keeping the number of false positives from noisy signals to a minimum.  
 
 
 Set-Up
 ------------
 
 ### Dependencies
-* Relies on Numpy,Scipy,Pandas,and Geopy. Most can be installed with pip or ship with Anaconda
-    - http://pandas.pydata.org
-    - http://scipy.org
-    - https://github.com/geopy/geopy
+
 * Requires Obspy for seismic routines and data fetch 
     - https://github.com/obspy/obspy/wiki
-* ANF catalog import stolen from old version of detex, a python code for subspace detection. Check it out at:
-    - https://github.com/dchambers/detex.git 
-    - or to install the latest: git+git://github.com/d-chambers/detex
-
-
-Quick Feature Summary
------
-* Uses coherent energy in broadband, low amplitude ranges to identify seismic events across an array
-* Input is local seismic data OR date range and station list for  obspy fetched waveform data
-* Output is a picktable (as a dataframe), and templates for each detection -organized in day directories
-* Current support for ANF catalog 
 
 
 Tutorial
@@ -54,8 +40,16 @@ Tutorial
     - duration: number of seconds (2 hours is the smallest allowable increment)
     - ndays:    number of days to process from start date/time
     - wb:       the station list to use. Referenced from lists in the last half of Util.py
+    
+* Output: trigger list:
 
-### Basic Tutorial
+### Things You Might Want To Tweak
+
+* Which picker, and then Tune the picker parameters
+* Sensor Array metadata- right now we nab it from obspy trace headers
+* Output is a picktable (as a dataframe), and templates for each detection -organized in day directories
+* Current support for ANF catalog 
+
 
 Credits
 ------------
