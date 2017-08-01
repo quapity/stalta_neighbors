@@ -10,8 +10,6 @@ LDK: A seismic array detection algorithm
 <b><a href="#tutorial">Tutorial</a></b>
 |
 <b><a href="#credits">Credits</a></b>
-|
-<b><a href="#license">License</a></b>
 </p>
 
 ![ScreenShot](https://github.com/quapity/stalta_neighbors/raw/master/STALTA_neighbors-03.png)
@@ -25,12 +23,6 @@ Amplitude picker where coherence matters only from neighbors in the node graph.
 
 Set-Up
 ------------
-
-### Notes
-* tested on Python 2.7
-* recommend to run in seperate env if other seimic processing relies on older obspy (<0.9.x)
-    With Conda you can use environments with diff packages,versions etc.
-    Docs on managing environments here: http://conda.pydata.org/docs/using/envs.html 
 
 ### Dependencies
 * Relies on Numpy,Scipy,Pandas,and Geopy. Most can be installed with pip or ship with Anaconda
@@ -69,6 +61,5 @@ Credits
 ------------
 
 
-License
--------------
+
 
