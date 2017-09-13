@@ -3,6 +3,8 @@
 Created on Fri Jul 14 09:29:21 2017
 @author: linville
 """
+from obspy.signal.trigger import coincidence_trigger
+from geopy.distance import vincenty
 #%% function block
 def closest_node(node,nodes,n):
     if len(nodes) == 1:
@@ -13,11 +15,11 @@ def closest_node(node,nodes,n):
         return np.argsort(dist_2,axis=0)[:n]
         
 def node_dist(node1,node2):
-    return pydist.vincenty(node1,node2).meters/1000.0"""
+    return pydist.vincenty(node1,node2).meters/1000.0
 
 #%% data block
 ###nodes are your latitude longitude pairs for each station
-nodes = [] #lat/lon pairs for each station
+nodes = [] #lat/lon pairs for each station [(32.6588, -104.6573), (32.6462, -104.0204)]
 stations = [] #station identifier
 tr =[] #this is an obspy stream, loaded with your trace data for all stations for some time period
 
@@ -36,12 +38,13 @@ trig = coincidence_trigger("recstalta", 3.5, 1, st, 5, sta=0.5, lta=10)
 numsta = 3
 for i in range(len(trig)):
     det = trig[i]['stations']
-    a,b,=[],[]
+    a,b,c=[],[],[]
     for each in det:
         ix =np.where(np.array(station) == each)[0][0]
-        a.append(closest_node(nodes[ix],nodes,2)[1])
+        a.append(closest_node(nodes[ix],nodes,3)[1:])
         b.append(ix)
-    c.append(len(np.intersect1d(a,b)))
-times=[]
-for i in np.where(np.array(c) >=numsta)[0]:
-    times.append(trig[i]['time'])
+    c =[station[x] for x in np.intersect1d(np.reshape(a,(len(a)*2)),b)]
+    trig[i]['adj_sta'] = c
+    trig[i]['adj_count'] = len(c)
+dftrig = pd.DataFrame(trig)
+dftrig = dftrig[dftrig['adj_count'] >= numsta].reset_index(drop=True)
