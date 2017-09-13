@@ -5,6 +5,8 @@ Created on Fri Jul 14 09:29:21 2017
 """
 from obspy.signal.trigger import coincidence_trigger
 from geopy.distance import vincenty
+import pandas as pd
+
 #%% function block
 def closest_node(node,nodes,n):
     if len(nodes) == 1:
