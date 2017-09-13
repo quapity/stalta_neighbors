@@ -4,8 +4,7 @@ Created on Fri Jul 14 09:29:21 2017
 
 @author: linville
 """
-tt = UTCDateTime(2010,2,10)
-tt2 = UTCDateTime(2010,2,11)
+tt,tt2 = UTCDateTime(2010,2,10),UTCDateTime(2010,2,11)
 tr = client.get_waveforms(station=station[0],network='TA',channel='BHZ',location='*',starttime=tt,endtime=tt2)
 st = tr.copy()
 st.filter('bandpass', freqmin=1, freqmax=10)
