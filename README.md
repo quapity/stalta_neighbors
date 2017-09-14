@@ -7,8 +7,6 @@ Amplitude picker, where coherence matters only from neighbors in the node graph
 |
 <b><a href="#set-up">Set-Up</a></b>
 |
-<b><a href="#tutorial">Tutorial</a></b>
-|
 <b><a href="#credits">Credits</a></b>
 </p>
 
@@ -28,13 +26,13 @@ Dependencies
 
 * Requires Obspy for STA/LTA implementation 
     - https://github.com/obspy/obspy/wiki
-
+* Requires geopy for geo dist, install with pip or conda
 
 ### Things You Might Want To Tweak
 
 * Which picker, and then Tune the picker parameters
 * Sensor Array metadata- I nab it from obspy trace headers
-* Output is a trigger list
+* Output is a trigger dict
 
 
 Credits
