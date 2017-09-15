@@ -42,10 +42,10 @@ for i in range(len(trig)):
     det = trig[i]['stations']
     a,b,c=[],[],[]
     for each in det:
-        ix =np.where(np.array(station) == each)[0][0]
+        ix =np.where(np.array(stations) == each)[0][0]
         a.append(closest_node(nodes[ix],nodes,3)[1:])
         b.append(ix)
-    c =[station[x] for x in np.intersect1d(np.reshape(a,(len(a)*2)),b)]
+    c =[stations[x] for x in np.intersect1d(np.reshape(a,(len(a)*2)),b)]
     trig[i]['adj_sta'] = c
     trig[i]['adj_count'] = len(c)
 dftrig = pd.DataFrame(trig)
