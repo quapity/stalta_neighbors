@@ -27,7 +27,7 @@ tr =[] #this is an obspy stream, loaded with your trace data for all stations fo
 
 #%% trigger block
 #Once you have a bunch of traces in a stream, you can make detections using obspy's sta/lta implementation
-#### The parameters in line 34 matter!!!!!! Optimize them for your data.
+#### The parameters in line 33 matter!!!!!! Optimize them for your data.
 st = tr.copy()
 st.filter('bandpass', freqmin=1, freqmax=10)
 trig = coincidence_trigger("recstalta", 3.5, 1, st, 5, sta=0.5, lta=10)
