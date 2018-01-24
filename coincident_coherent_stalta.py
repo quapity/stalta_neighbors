@@ -27,15 +27,16 @@ tr =[] #this is an obspy stream, loaded with your trace data for all stations fo
 
 #%% trigger block
 #Once you have a bunch of traces in a stream, you can make detections using obspy's sta/lta implementation
-#### The parameters in line 33 matter!!!!!! Optimize them for your data.
+#The parameters on line 33 matter!!!!!! Optimize them for your data.
 st = tr.copy()
 st.filter('bandpass', freqmin=1, freqmax=10)
 trig = coincidence_trigger("recstalta", 3.5, 1, st, 5, sta=0.5, lta=10)
 
 #%% filter block
-#This is the only value I'm adding- It just says, don't return me EVERY detection the trigger routine gives me back.
-#only give me detections (associated into triggers) that happen on X number of adjacent stations. If your data is seismic,
-#and your array is very small (nodal guys), make numsta very big. By very big, I mean a number nearly equivalent to your station count.
+
+"""This is the only value I'm adding- It just says, don't return me EVERY detection the trigger routine gives me back. 
+Only give me detections (associated into triggers) that happen on X number of adjacent stations. For seismic data
+and small array size (nodal guys), make numsta very big. By very big, I mean a number nearly equivalent to your station count."""
 
 numsta = 3
 for i in range(len(trig)):
